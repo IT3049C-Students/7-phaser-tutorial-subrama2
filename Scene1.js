@@ -37,12 +37,34 @@ class Scene1 extends Phaser.Scene {
             frameHeight: 24
 
         });
+        this.load.spritesheet("beam", "C:\Annamalai\2021 Summer semester\Web Game Development\7-phaser-tutorial-subrama2\spritesheets\beam.png",{
+            frameWidth: 16,
+            frameHeight: 16
+
+        });
+        this.load.bitmapFont("pixelFont", "C:\Annamalai\2021 Summer semester\Web Game Development\7-phaser-tutorial-subrama2\font\font.png", 
+        "C:\Annamalai\2021 Summer semester\Web Game Development\7-phaser-tutorial-subrama2\font\font.xml");
     }
 
     create() {
 
         this.add.text(20,20, "Loading game...");
         this.scene.start("playGame");
+        var graphics = this.add.graphics();
+        graphics.fillStyle(0x0000000, 1);
+        graphics.beginPath();
+        graphics.moveTo(0,0);
+        graphics.lineTo(config.width, 0);
+        graphics.lineTo(config.width, 20);
+        graphics.lineTo(0,20);
+        graphics.lineTo(0, 0);
+        graphics.closePath();
+        graphics.fillPath();
+
+
+
+        this.score = 0;
+        this.scorelabel = this.add.bitmapText(10,5, "pixelFont", "SCORE ", 16);
 
         this.anims.create({
             key: "ship1_anim",
@@ -82,10 +104,7 @@ class Scene1 extends Phaser.Scene {
         this.ship3.setInteractive();
 
         this.input.on('gameobjectdown', this.destroyShip, this);
-        this.add.text(20, 20, "Playing game", {
-            font: "25px Arial",
-            fill: "yellow"
-        });
+        
         this.anims.create({
 
             key: "red",
@@ -114,6 +133,15 @@ class Scene1 extends Phaser.Scene {
             frameRate: 20,
             repeat: -1
         });
+       
+        this.anims.create({
+
+            key: "beam_anim",
+            frames: this.anims.generateFrameNumbers("beam"),
+            frameRate: 20,
+            repeat: -1
+        });
+       
     }
     
 }
