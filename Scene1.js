@@ -27,6 +27,11 @@ class Scene1 extends Phaser.Scene {
             frameHeight: 16
 
         });
+        this.load.spritesheet("power-up", "C:\Annamalai\2021 Summer semester\Web Game Development\7-phaser-tutorial-subrama2\spritesheets\power-up.png",{
+            frameWidth: 16,
+            frameHeight: 16
+
+        });
     }
 
     create() {
