@@ -64,6 +64,9 @@ class Scene2 extends Phaser.Scene{
     hitEnemy(projectiles, enemy) {
         projectiles.destroy();
         this.resetShipPos(enemy);
+        this.score +=15;
+        var scoreFormatted = this.zeroPad(this.score, 6);
+        this.scoreLabel.text = "SCORE " + scoreFormatted;
     }
     moveShip(ship, speed) {
         ship.y += speed;
@@ -114,5 +117,12 @@ class Scene2 extends Phaser.Scene{
     destroyShip(pointer, gameObject) {
         gameObject.setTexture("explosion");
         gameObject.play("explode");
+    }
+    zeroPad(number,size){
+        var stringNumber = String(number);
+        while(stringNumber.length <  (size || 2)){
+            stringNumber = "0" + stringNumber;
+        }
+        return stringNumber;
     }
 }
